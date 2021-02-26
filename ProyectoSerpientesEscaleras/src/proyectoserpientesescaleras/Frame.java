@@ -10,7 +10,12 @@ package proyectoserpientesescaleras;
  * @author m825
  */
 public class Frame extends javax.swing.JFrame {
-
+    Objeto rosa;
+    Objeto azu;
+    Objeto verd;
+    Objeto amari;
+    int turno=1;
+    int jugadores;
     /**
      * Creates new form Frame
      */
@@ -30,6 +35,15 @@ public class Frame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Tablero = new javax.swing.JPanel();
+        Amarillo = new javax.swing.JLabel();
+        Azul = new javax.swing.JLabel();
+        Verde = new javax.swing.JLabel();
+        Rosado = new javax.swing.JLabel();
+        Numerodado = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        turnos = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         Jugadores = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -39,11 +53,39 @@ public class Frame extends javax.swing.JFrame {
         menu = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        Tablero = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Tablero.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Amarillo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/amarillo.png"))); // NOI18N
+        Tablero.add(Amarillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, -1, -1));
+
+        Azul.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/azul.png"))); // NOI18N
+        Tablero.add(Azul, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, -1, -1));
+
+        Verde.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/verde.png"))); // NOI18N
+        Tablero.add(Verde, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 350, -1, -1));
+
+        Rosado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/rosado.png"))); // NOI18N
+        Tablero.add(Rosado, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 350, -1, -1));
+
+        Numerodado.setText("jLabel5");
+        Tablero.add(Numerodado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, -1, -1));
+
+        jButton5.setText("Dado");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        Tablero.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, -1, -1));
+
+        turnos.setText("jugador 1");
+        Tablero.add(turnos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, 80, 20));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tablero.jpg"))); // NOI18N
+        Tablero.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         Jugadores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -92,14 +134,6 @@ public class Frame extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menu1.jpg"))); // NOI18N
         menu.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        Tablero.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton5.setText("Dado");
-        Tablero.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, -1, -1));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tablero.jpg"))); // NOI18N
-        Tablero.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,6 +165,12 @@ public class Frame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Jugadores.setVisible(false);
         Tablero.setVisible(true);
+        amari=new Objeto(Amarillo);
+        azu=new Objeto(Azul);
+        Verde.setVisible(false);
+        Rosado.setVisible(false);
+        jugadores=2;
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -138,15 +178,134 @@ public class Frame extends javax.swing.JFrame {
         // TODO add your handling code here:
         Jugadores.setVisible(false);
         Tablero.setVisible(true);
+        amari=new Objeto(Amarillo);
+        azu=new Objeto(Azul);
+        verd=new Objeto(Verde);
+        Rosado.setVisible(false);
+        jugadores=3;
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Jugadores.setVisible(false);
         Tablero.setVisible(true);
-        
+        amari=new Objeto(Amarillo);
+        azu=new Objeto(Azul);
+        verd=new Objeto(Verde);
+        rosa=new Objeto(Rosado);
+        jugadores=4;
     }//GEN-LAST:event_jButton4ActionPerformed
+    int ronda=0;
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        int dado=(int) (Math. random() * 6) + 1;
+        
+                
+        Numerodado.setText(""+dado);
+        switch (jugadores) {
+            
+            case 2:
+                if(turno==1){
+                    ronda++;
+                    jugador1(dado);
+                    turno=2;
+                    turnos.setText("jugador "+turno);
+                }else if(turno==2){
+                    jugador2(dado);
+                    turno=1;
+                    turnos.setText("jugador "+turno);                 
+                }   break;
+            case 3:
+                if(turno==1){
+                    ronda++;
+                    jugador1(dado);
+                    turno=2;
+                    turnos.setText("jugador "+turno);
+                }else if(turno==2){
+                    jugador2(dado);
+                    turno=3;
+                    turnos.setText("jugador "+turno);
+                }else if(turno==3){
+                    jugador3(dado);
+                    turno=1;
+                    turnos.setText("jugador "+turno);
+                    
+                }   break;
+            case 4:
+                if(turno==1){
+                    ronda++;
+                    jugador1(dado);
+                    turno=2;
+                    turnos.setText("jugador "+turno);
+                }else if(turno==2){
+                    jugador2(dado);
+                    turno=3;
+                    turnos.setText("jugador "+turno);
+                }else if(turno==3){
+                    jugador3(dado);
+                    turno=4;
+                    turnos.setText("jugador "+turno);
+                }else if(turno==4){
+                    jugador4(dado);
+                    turno=1;
+                    turnos.setText("jugador "+turno);
+                    
+                }   break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jugador1(int dado){
+            
+            amari.Setdado(dado);
+            if(ronda==1){
+                amari.start();
+            }else{
+               if(turno==1){
+               amari.Setpause(false);
+               }
+            }
+            
+            
+            System.out.println("fin jugador1");
+            
+           
+    }
+    private void jugador2(int dado){
+        azu.Setdado(dado);
+            if(ronda==1){
+                azu.start();
+            }else{
+               if(turno==2){
+               azu.Setpause(false);
+               }
+            }
+        
+        
+    }
+    private void jugador3(int dado){
+        verd.Setdado(dado);
+        if (ronda == 1) {
+           verd.start();
+        } else {
+            if (turno == 3) {
+                verd.Setpause(false);
+            }
+        }
+        
+    }
+    private void jugador4(int dado){
+        rosa.Setdado(dado);
+        if(ronda==1){
+                rosa.start();
+            }else{rosa.start();
+               if(turno==4){
+               rosa.Setpause(false);
+               }
+            }
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -183,8 +342,13 @@ public class Frame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Amarillo;
+    private javax.swing.JLabel Azul;
     private javax.swing.JPanel Jugadores;
+    private javax.swing.JLabel Numerodado;
+    private javax.swing.JLabel Rosado;
     private javax.swing.JPanel Tablero;
+    private javax.swing.JLabel Verde;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -195,5 +359,6 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel menu;
+    private javax.swing.JLabel turnos;
     // End of variables declaration//GEN-END:variables
 }
