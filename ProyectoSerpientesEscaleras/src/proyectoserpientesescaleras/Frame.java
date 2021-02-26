@@ -5,12 +5,18 @@
  */
 package proyectoserpientesescaleras;
 
+
 /**
  *
  * @author m825
  */
 public class Frame extends javax.swing.JFrame {
-
+    Jugador Verde = new Jugador();
+    Jugador Rosado = new Jugador();
+    Jugador Amarillo = new Jugador();
+    Jugador Azul = new Jugador();
+    int Turno=1;
+    int cantTurnos=2;
     /**
      * Creates new form Frame
      */
@@ -19,8 +25,9 @@ public class Frame extends javax.swing.JFrame {
         menu.setVisible(true);
         Jugadores.setVisible(false);
         Tablero.setVisible(false);
+        jLabel9.setVisible(false);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,6 +48,11 @@ public class Frame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Tablero = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -95,7 +107,29 @@ public class Frame extends javax.swing.JFrame {
         Tablero.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton5.setText("Dado");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         Tablero.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 36)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Gana Jugador");
+        Tablero.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 290, 80));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/verde.png"))); // NOI18N
+        Tablero.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 70, 70));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/rosado.png"))); // NOI18N
+        Tablero.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 70, 70));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/amarillo.png"))); // NOI18N
+        Tablero.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 70, 70));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/azul.png"))); // NOI18N
+        Tablero.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 70, 70));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/tablero.jpg"))); // NOI18N
         Tablero.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -131,6 +165,7 @@ public class Frame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Jugadores.setVisible(false);
         Tablero.setVisible(true);
+        cantTurnos = 2;
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -138,14 +173,69 @@ public class Frame extends javax.swing.JFrame {
         // TODO add your handling code here:
         Jugadores.setVisible(false);
         Tablero.setVisible(true);
+        cantTurnos = 3;
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Jugadores.setVisible(false);
         Tablero.setVisible(true);
+        cantTurnos = 4;
         
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if(Turno > cantTurnos){
+            Turno = 1;
+        }
+        if(Turno == 1){
+            Verde.setCuad();
+            Verde.setPosx();
+            Verde.setPosy();
+            jLabel5.setLocation(Verde.getPosx(), Verde.getPosy());
+            if(Verde.gana() == true){
+                jLabel9.setText("Gana el Verde");
+                jLabel9.setVisible(true);
+            }
+            Turno++;
+        }
+        else if(Turno == 2){
+            Rosado.setCuad();
+            Rosado.setPosx();
+            Rosado.setPosy();
+            jLabel6.setLocation(Rosado.getPosx(), Rosado.getPosy());
+            if(Rosado.gana() == true){
+                jLabel9.setText("Gana el Rosado");
+                jLabel9.setVisible(true);
+            }
+            Turno++;
+        }
+        else if(Turno == 3){
+            Amarillo.setCuad();
+            Amarillo.setPosx();
+            Amarillo.setPosy();
+            jLabel7.setLocation(Amarillo.getPosx(), Amarillo.getPosy());
+            if(Amarillo.gana() == true){
+                jLabel9.setText("Gana el Amarillo");
+                jLabel9.setVisible(true);
+            }
+            Turno++;
+        }
+        else if(Turno == 4){
+            Azul.setCuad();
+            Azul.setPosx();
+            Azul.setPosy();
+            jLabel8.setLocation(Azul.getPosx(), Azul.getPosy());
+            if(Azul.gana() == true){
+                jLabel9.setText("Gana el Azul");
+                jLabel9.setVisible(true);
+            }
+            Turno++;
+        }
+        
+
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,6 +284,11 @@ public class Frame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel menu;
     // End of variables declaration//GEN-END:variables
 }
